@@ -23,7 +23,7 @@ public class DealerServiceImpl implements DealerService {
     @Override
     public Dealer getSingleEntity(String dealCode) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        Dealer dealer =  (Dealer) jdbcTemplate
+        Dealer dealer = jdbcTemplate
                 .queryForObject(QUERY_FOR_DEALERS + " where deal_code=?", new Object[] {dealCode}, new DealerRowMapper());
         if(dealer == null){
             throw new UserNotFoundException("Dealer with code: " + dealCode + " does not exist");
@@ -41,6 +41,6 @@ public class DealerServiceImpl implements DealerService {
     @Override
     public List<Dealer> getResultExtractorList() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        return (List<Dealer>)jdbcTemplate.query(QUERY_FOR_DEALERS, new DealerExtractor());
+        return jdbcTemplate.query(QUERY_FOR_DEALERS, new DealerExtractor());
     }
 }

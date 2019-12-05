@@ -6,10 +6,10 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DealerRowMapper implements RowMapper {
+public class DealerRowMapper implements RowMapper<Dealer> {
 
     @Override
-    public Object mapRow(ResultSet resultSet, int i) throws SQLException {
+    public Dealer mapRow(ResultSet resultSet, int i) throws SQLException {
         Dealer dealer = new Dealer();
 
         dealer.setDealerCode(resultSet.getString("deal_code"));

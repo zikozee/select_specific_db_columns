@@ -25,7 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee getSingleEntity(Integer id) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        Employee employee =  (Employee) jdbcTemplate
+        Employee employee = jdbcTemplate
                 .queryForObject(QUERY_FOR_EMPLOYEES + " where id=?", new Object[] {id}, new EmployeeRowMapper());
         if(employee == null){
             throw new UserNotFoundException("Employee with id: " + id + " does not exist");
@@ -43,6 +43,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> getResultExtractorList() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        return (List<Employee>)jdbcTemplate.query(QUERY_FOR_EMPLOYEES, new EmployeeExtractor());
+        return jdbcTemplate.query(QUERY_FOR_EMPLOYEES, new EmployeeExtractor());
     }
 }

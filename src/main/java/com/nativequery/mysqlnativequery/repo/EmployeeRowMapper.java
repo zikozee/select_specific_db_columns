@@ -6,10 +6,10 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class EmployeeRowMapper implements RowMapper {
+public class EmployeeRowMapper implements RowMapper<Employee> {
 
     @Override
-    public Object mapRow(ResultSet resultSet, int i) throws SQLException {
+    public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
         Employee employee = new Employee();
 
         employee.setFirstName(resultSet.getString("first_name"));

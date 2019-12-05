@@ -9,9 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeExtractor implements ResultSetExtractor {
+public class EmployeeExtractor implements ResultSetExtractor<List<Employee>>{
     @Override
-    public Object extractData(ResultSet resultSet) throws SQLException, DataAccessException {
+    public List<Employee> extractData(ResultSet resultSet) throws SQLException, DataAccessException {
         List<Employee> employees = new ArrayList<>();
 
         while(resultSet.next()){

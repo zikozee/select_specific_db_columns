@@ -25,6 +25,19 @@ public class DatasourceConfiguration {
     @Value("${db.password}")
     private String password;
 
+
+    @Bean(name = "mysql_db")
+    @Primary
+    public DataSource getDataBaseOneTemplate(){
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(driverClassName);
+        dataSource.setUrl(dbUrl);
+        dataSource.setUsername(userName);
+        dataSource.setPassword(password);
+
+        return dataSource;
+    }
+
     @Value("${mssql.driverClassName}")
     private String mssqlDriverClassName;
 
@@ -40,17 +53,6 @@ public class DatasourceConfiguration {
     @Value("${mssql.hibernate.dialect}")
     private String mssqlDialect;
 
-    @Bean(name = "mysql_db")
-    @Primary
-    public DataSource getDataBaseOneTemplate(){
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(driverClassName);
-        dataSource.setUrl(dbUrl);
-        dataSource.setUsername(userName);
-        dataSource.setPassword(password);
-
-        return dataSource;
-    }
 
     //TODO use ms sql-server to configure another database with another bean name and try connect likewise
     // remember extractor is the best
